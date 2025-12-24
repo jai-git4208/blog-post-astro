@@ -1,35 +1,37 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
-
-// Import the FormattedDate component
 import FormattedDate from '../components/FormattedDate.astro';
-
-// Import CSS styles
-import '../styles/global.css';
+import BaseLayout from './BaseLayout.astro';
 import '../styles/post.css';
 
-// Get the blog post data from props
 type Props = CollectionEntry<'blog'>['data'];
 const { title, description, pubDate, heroImage } = Astro.props;
 ---
-<div class="post-page page-shell">
-    <article class="post">
-        <!-- Header with post data -->
-        <header>
-            <h1>{title}</h1>
-            <p class="description">{description}</p>
-            {heroImage && (
-                <Image src={heroImage} format="webp" alt={title} class="hero" />
-            )}
-            <p class="date">
-                <FormattedDate date={pubDate} />
-            </p>
-        </header>
 
-        <!-- The post's content will be rendered in the slot tag -->
-        <div class="body">
-            <slot />
-        </div>
-    </article>
-</div>
+<BaseLayout title={title} description={description}>
+  <article class="post">
+    <header class="post-header animate-in">
+      <div class="post-meta">
+        <FormattedDate date={pubDate} />
+      </div>
+      <h1>{title}</h1>
+      <p class="post-description">{description}</p>
+    </header>
+
+    {heroImage && (
+      <Image 
+        src={heroImage} 
+        format="webp" 
+        alt={title} 
+        class="post-hero animate-in delay-100" 
+        width={1600}
+        height={900}
+      />
+    )}
+
+    <div class="post-body animate-in delay-200">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

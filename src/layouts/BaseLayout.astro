@@ -1,0 +1,49 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import SillySecret from '../components/SillySecret.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "A beautiful blog built with Astro" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <ClientRouter />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="nav-header glass">
+        <div class="container nav-content">
+          <a href="/" class="logo">jai's blog *-*</a>
+          <nav style="display: flex; align-items: center; gap: 2rem;">
+            <a href="/posts" style="font-weight: 600;">Posts</a>
+          </nav>
+        </div>
+      </header>
+      <main class="container animate-in">
+        <slot />
+      </main>
+      <footer style="margin-top: auto; padding: 4rem 0 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.875rem;">
+        <div class="container">
+          &copy; {new Date().getFullYear()} hehe. Built with ❤️ and Astro by jai
+        </div>
+      </footer>
+      <SillySecret />
+    </div>
+  </body>
+</html>

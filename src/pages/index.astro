@@ -1,23 +1,27 @@
 ---
-// Import CSS styles
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
-    </head>
-    <body>
-        <main class="page-shell home">
-            <div class="page-header">
-                <h1>Astro</h1>
-                <p class="tagline">Such a jolly blog!</p>
-                <a href="/posts" class="posts-link">See Posts</a>
-            </div>
-        </main>
-    </body>
-</html>
+<BaseLayout title="jai's Blog | Home">
+  <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center;">
+    <div class="glass" style="padding: 4rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); max-width: 600px; width: 100%;">
+      <h1 style="font-size: 4rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--accent), #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        Hi Hi, This my personal blog
+      </h1>
+      <p style="font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem;">
+        Kinda cool, isnt it?
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center;">
+        <a href="/posts" class="btn">
+          Browse Posts
+          <svg style="margin-left: 0.5rem;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  
+</BaseLayout>
